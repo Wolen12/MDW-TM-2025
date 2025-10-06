@@ -1,14 +1,9 @@
-import {
-  registerUser,
-  login
-} from "../controllers/userController";
-import express from "express";
-import validationMiddleware from "../Middleware/middleware";
-import { CreateUserDto } from "../dto/createUserDto";
+import { Router } from "express";
+import { AuthController } from "../controllers/authcontroller";
 
-const router = express.Router();
+const router = Router();
 
-router.post("/register", validationMiddleware(CreateUserDto), registerUser);
-router.post("/login", login);
-
+router.post("/register", AuthController.register);
+router.post("/login", AuthController.login);
+router.post("/logout", AuthController.logout);
 export default router;
